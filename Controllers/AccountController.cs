@@ -25,10 +25,18 @@ namespace CoreFormsAndValidations.Controllers
         [HttpPost]
         public IActionResult LoginSuccess(LoginViewModel login)
         {
-            ViewBag.Username = login.Username;
-            ViewBag.Password = login.Password;
+            // ViewBag.Username = login.Username;
+            // ViewBag.Password = login.Password;
+            if (login.Username != null && login.Password != null) {
+                if (login.Username.Equals("admin") && login.Password.Equals("admin")) {
+                    ViewBag.Message = "You are successfully logged in.";
+                    return View();
+                }
+            }
+            ViewBag.Message = "Invalid Credentials";
             return View();
         }
+
         public IActionResult UserDetail()
         {
             var user = new LoginViewModel() { Username = "Guy", Password = "12345" };
