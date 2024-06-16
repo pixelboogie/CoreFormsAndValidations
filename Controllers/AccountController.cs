@@ -26,8 +26,9 @@ namespace CoreFormsAndValidations.Controllers
         [HttpPost]
         public IActionResult LoginSuccess(LoginViewModel login)
         {
-            // ViewBag.Username = login.Username;
-            // ViewBag.Password = login.Password;
+            // *****************************
+            // Validate fields are not empty/ null
+            // *****************************
             if (login.Username != null && login.Password != null) {
                 if (login.Username.Equals("admin") && login.Password.Equals("admin")) {
                     ViewBag.Message = "You are successfully logged in.";
@@ -61,7 +62,10 @@ namespace CoreFormsAndValidations.Controllers
         [HttpPost]
         public IActionResult PostAccount(Account account)
         {
-            if (ModelState.IsValid)
+            // *****************************
+            // Validate the ModelState is valid
+            // *****************************
+            if (ModelState.IsValid) 
             {
                 return View("Success");
             }
